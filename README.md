@@ -2,15 +2,43 @@
 
 Interactive launch page for a fictional mechanical keyboard. The project demonstrates visual direction, frontend structure, animation, and interaction in a single static page.
 
+**Engineering for Minds That Build.**
+
+Live site: [impact-frame.nudrak.dev](https://impact-frame.nudrak.dev) · Repository: [Donovan-Nudrak/impact-frame-xk75](https://github.com/Donovan-Nudrak/impact-frame-xk75)
+
+[![Deploy](https://github.com/Donovan-Nudrak/impact-frame-xk75/actions/workflows/deploy.yml/badge.svg)](https://github.com/Donovan-Nudrak/impact-frame-xk75/actions/workflows/deploy.yml)
+[![React](https://img.shields.io/badge/React-19.3-20232A?logo=react&logoColor=61DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-8.3-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
+[![GSAP](https://img.shields.io/badge/GSAP-3.15-88CE02?logo=greensock&logoColor=white)](https://gsap.com/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-impact--frame.nudrak.dev-222222?logo=githubpages&logoColor=white)](https://impact-frame.nudrak.dev)
+
+<p align="center">
+  <img src="src/assets/keyboard/xk75-hero-assembled.png" alt="Assembled IMPACT-FRAME XK75 keyboard, the Hero product view." width="720">
+</p>
+
 ## Project overview
 
 IMPACT-FRAME XK75 presents a compact 75% keyboard as a conceptual hardware launch. The page walks through identity, construction, mechanism, materials, connectivity, and a specification sheet.
 
-The scope is a static, responsive, interactive frontend. Content lives in the repository. The page is not a store and does not represent a commercial product.
+The scope is a static, responsive, interactive frontend. Content lives in the repository. The page is not a store and does not represent a commercial product. The published build is served from [https://impact-frame.nudrak.dev](https://impact-frame.nudrak.dev).
+
+## Experience
+
+| Section | Role |
+| --- | --- |
+| Hero | Product identity, tagline, and reserve call to action |
+| Manifesto | Editorial statement with a line-by-line text reveal |
+| Architecture | Eight-layer stack; the selected layer stays fully visible |
+| Switch System | Click to compress the switch cross-section, then release it |
+| Materials | Six photographic studies of chassis, keycaps, knob, finish, plate, and foam |
+| Performance | Schematic paths for USB-C, 2.4 GHz, and Bluetooth |
+| Specifications | Conceptual sheet for product, construction, connectivity, and controls |
+| Reserve | Local name and email form; submission is not stored |
+| Final Statement | Closing product view and return to the top |
 
 ## Key features
 
-- Nine sections: Hero, Manifesto, Architecture, Switch System, Materials, Performance, Specifications, Reserve, and Final Statement.
 - In-page navigation through anchor links in the header and footer. On narrow viewports the header links move into a menu.
 - Spanish and English copy, switched in the header without a reload.
 - Locale persisted in `localStorage` under `if-xk75-locale`.
@@ -18,15 +46,15 @@ The scope is a static, responsive, interactive frontend. Content lives in the re
 - Limited pointer parallax on the Hero keyboard, active only for a fine pointer with hover.
 - Eight-layer construction stack. The active layer changes when its row is selected.
 - Switch cross-section that compresses and returns on click.
-- Materials section with six photographic studies: chassis, keycaps, knob, finish, plate, and acoustic foam.
 - Connectivity diagram for USB-C, 2.4 GHz, and Bluetooth. The drawing is a schematic, not a measurement.
-- Conceptual specification sheet grouped by product, construction, connectivity, and controls.
+- Conceptual specification sheet. Lighting and the machined knob appear as copy only.
 - Reserve form with local validation. Submitting it replaces the form with a notice that the product is fictional. Nothing is sent or stored.
 - `prefers-reduced-motion` support across the implemented sections.
+- Footer links to LinkedIn, GitHub, and [nudrak.dev](https://nudrak.dev).
 
 ## Technology stack
 
-Versions below are the ones installed from `package-lock.json`. CSS Modules are provided by Vite; they are not a separate package.
+Versions below are the ones installed from `package-lock.json`. CSS Modules are provided by Vite; they are not a separate package. The badges above follow the ranges declared in `package.json`.
 
 | Package | Version | Role |
 | --- | --- | --- |
@@ -42,13 +70,24 @@ Versions below are the ones installed from `package-lock.json`. CSS Modules are 
 | Vitest | 5.0.1 | Tests |
 | jsdom | 30.1.0 | Test DOM |
 
-Node.js `>=22.12.0` (`engines` in `package.json`).
+Node.js `>=22.12.0` (`engines` in `package.json`). The deploy workflow installs Node 22.
 
 Fontsource supplies Barlow Condensed, Inter, IBM Plex Mono, and Orbitron (latin subsets). Orbitron is used for the Hero product title.
 
 ## Technical architecture
 
 `index.html` loads `src/main.tsx`, which mounts `src/App.tsx`. The app composes the header, the nine sections, and the footer. Each section owns its CSS Module.
+
+```mermaid
+flowchart TD
+  mainTsx["main.tsx"] --> appTsx["App.tsx"]
+  appTsx --> sections["Nine sections"]
+  appTsx --> shared["Header, Footer, Button, LanguageToggle"]
+  sections --> data["Typed data and ES/EN copy"]
+  sections --> locale["Locale store"]
+  sections --> hooks["Interaction hooks"]
+  sections --> gsap["GSAP, ScrollTrigger, SplitText"]
+```
 
 Typed data in `src/data/` describes layers, switch parts, materials, connection modes, specification groups, and navigation. Interface copy lives in `src/data/copy/` as paired English and Spanish dictionaries. `src/i18n/localeStore.ts` holds the active locale in module state. `useLocale` reads it with `useSyncExternalStore`.
 
@@ -99,7 +138,7 @@ Initial locale order:
 
 If `localStorage` throws, the selected locale stays in memory.
 
-The page uses `header`, `nav`, `main`, `section`, and `footer`. Sections expose accessible names. Header and footer links are ordinary anchors. The narrow menu exposes `aria-expanded` and `aria-controls`; Escape closes it and returns focus to the menu button. The reserve form uses associated labels, `aria-invalid`, and error text. Focus moves to the first invalid field. The confirmation is a `role="status"` region inside the section.
+The page uses `header`, `nav`, `main`, `section`, and `footer`. Sections expose accessible names. Header and footer links are ordinary anchors. External profile links open in a new tab. The narrow menu exposes `aria-expanded` and `aria-controls`; Escape closes it and returns focus to the menu button. The reserve form uses associated labels, `aria-invalid`, and error text. Focus moves to the first invalid field. The confirmation is a `role="status"` region inside the section.
 
 `useReducedMotion` reads `prefers-reduced-motion: reduce`. When it matches, entrance tweens are skipped and the switch press uses a short state change instead of the timeline. CSS in the sections also reduces motion.
 
@@ -121,6 +160,8 @@ npm test
 npm run build
 npm run preview
 ```
+
+`npm run build` typechecks the project and writes a static site to `dist/`. `npm run preview` serves that output locally. Vite `base` is `"/"`, so asset URLs are root-relative.
 
 ## Available scripts
 
@@ -149,10 +190,20 @@ The specification sheet omits values that the concept does not define. It does n
 
 ## Deployment
 
-`npm run build` typechecks the project and writes a static site to `dist/`. `npm run preview` serves that output locally.
+A push to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow checks out the repository, installs dependencies with `npm ci` on Node 22, runs `npm run build`, uploads `dist` with `actions/upload-pages-artifact`, and publishes it with `actions/deploy-pages`. `actions/configure-pages` prepares the Pages environment. The job needs `contents: read`, `pages: write`, and `id-token: write`.
 
-The repository does not include deployment configuration.
+```mermaid
+flowchart LR
+  pushMain["Push to main"] --> actions["GitHub Actions"]
+  actions --> npmCi["npm ci"]
+  npmCi --> viteBuild["Vite build"]
+  viteBuild --> distArtifact["dist artifact"]
+  distArtifact --> pages["GitHub Pages"]
+  pages --> domain["impact-frame.nudrak.dev"]
+```
+
+The site is published at [https://impact-frame.nudrak.dev](https://impact-frame.nudrak.dev). `base` in `vite.config.ts` is `"/"`, so the custom domain loads scripts, styles, and images from the site root.
 
 ## Credits
 
-The page footer attributes the work to Donovan NUDRAK, © 2026.
+The page footer attributes the work to Donovan, © 2026, and links to [LinkedIn](https://www.linkedin.com/in/donovan-a-83b7ba3a2), [GitHub](https://github.com/Donovan-Nudrak), and [nudrak.dev](https://nudrak.dev).
