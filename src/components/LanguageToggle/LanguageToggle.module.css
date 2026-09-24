@@ -1,0 +1,29 @@
+.group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  border: var(--border-width) solid var(--color-steel);
+  padding: 0.2rem;
+}
+
+.option {
+  min-width: 2.4rem;
+  min-height: 2rem;
+  padding: 0.35rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.14em;
+  color: var(--color-gray);
+  transition:
+    color var(--duration-fast) var(--ease-machine),
+    background-color var(--duration-fast) var(--ease-machine);
+}
+
+.option[aria-pressed="true"] {
+  color: var(--color-black);
+  background-color: var(--color-cyan);
+}
+
+.option:hover:not([aria-pressed="true"]) {
+  color: var(--color-white);
+}

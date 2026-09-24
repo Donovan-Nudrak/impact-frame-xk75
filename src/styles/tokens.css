@@ -1,0 +1,47 @@
+:root {
+  --color-black: #050708;
+  --color-graphite: #0d1215;
+  --color-gunmetal: #1b2429;
+  --color-steel: #354047;
+  --color-white: #edf3f5;
+  --color-gray: #b6c2c6;
+  --color-cyan: #24d8f0;
+  --color-blue: #168bff;
+  --gradient-signal: linear-gradient(135deg, #24d8f0, #168bff);
+
+  --font-display:
+    "Barlow Condensed", "Arial Narrow", "Liberation Sans Narrow",
+    "Nimbus Sans Narrow", sans-serif;
+  --font-product: Orbitron, "Segoe UI", Arial, sans-serif;
+  --font-body: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono:
+    "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  --text-display: clamp(3.5rem, 8vw, 7.5rem);
+  --text-title: clamp(1.75rem, 3vw, 2.75rem);
+  --text-body: 1rem;
+  --text-small: 0.8125rem;
+  --text-micro: 0.6875rem;
+
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --radius: 0;
+  --radius-max: 4px;
+  --border-width: 1px;
+  --header-height: 4.25rem;
+
+  --focus-ring: 0 0 0 2px var(--color-black), 0 0 0 3px var(--color-cyan);
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-height: 4rem;
+  }
+}

@@ -1,0 +1,103 @@
+.manifesto {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  scroll-margin-top: var(--header-height);
+}
+
+.layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.92fr) minmax(0, 1.08fr);
+  align-items: center;
+  column-gap: clamp(1.25rem, 4vw, 3.5rem);
+  min-height: min(92dvh, 54rem);
+  padding: clamp(4rem, 9vw, 8rem) clamp(1.15rem, 4vw, 4rem)
+    clamp(4.5rem, 10vw, 8.5rem);
+}
+
+.copy {
+  max-width: 38rem;
+}
+
+.headline {
+  max-width: 11.5em;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6.4vw, 5.15rem);
+  font-weight: 600;
+  letter-spacing: 0.012em;
+  line-height: 0.98;
+  text-transform: none;
+  text-wrap: balance;
+  color: var(--color-white);
+}
+
+.body {
+  max-width: 34rem;
+  margin-top: var(--space-8);
+  font-size: clamp(1.05rem, 1.7vw, 1.28rem);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.55;
+  text-wrap: pretty;
+  color: var(--color-gray);
+}
+
+.visual {
+  position: relative;
+  justify-self: end;
+  width: min(100%, 64rem);
+  pointer-events: none;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  max-height: min(78vh, 780px);
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (max-width: 959px) {
+  .layout {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    row-gap: var(--space-8);
+    padding-block: clamp(3.5rem, 12vw, 5.5rem);
+  }
+
+  .copy {
+    max-width: none;
+  }
+
+  .headline {
+    max-width: 16em;
+    font-size: clamp(2.35rem, 10.5vw, 3.6rem);
+  }
+
+  .visual {
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .image {
+    max-height: min(52vh, 420px);
+    object-position: center;
+  }
+}
+
+@media (max-width: 560px) {
+  .body {
+    margin-top: var(--space-6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visual,
+  .headline,
+  .body {
+    opacity: 1;
+    transform: none;
+  }
+}

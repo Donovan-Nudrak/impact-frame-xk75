@@ -1,0 +1,68 @@
+.diagram {
+  display: grid;
+  justify-items: center;
+  width: min(100%, 16.5rem);
+  margin-top: 6.25rem;
+  background: transparent;
+}
+
+.part {
+  display: block;
+  width: 72%;
+  height: auto;
+  margin-block: -3.55rem;
+  transform: translateY(var(--rest-y, 0));
+  pointer-events: none;
+}
+
+.diagram [data-part="keycap"] {
+  --rest-y: -2.35rem;
+  width: 82%;
+  margin-top: -2.4rem;
+  z-index: 6;
+}
+
+.diagram [data-part="housingUpper"] {
+  --rest-y: -1.75rem;
+  width: 70%;
+  z-index: 5;
+}
+
+.diagram [data-part="stem"] {
+  --rest-y: -1.2rem;
+  width: 44%;
+  z-index: 4;
+}
+
+.diagram [data-part="spring"] {
+  --rest-y: -0.75rem;
+  width: 26%;
+  z-index: 3;
+  transform-origin: 50% 0%;
+}
+
+.diagram [data-part="contact"] {
+  --rest-y: -0.35rem;
+  width: 34%;
+  z-index: 2;
+  opacity: 0.45;
+}
+
+.diagram [data-part="housingLower"] {
+  --rest-y: 0;
+  width: 70%;
+  margin-bottom: 1.35rem;
+  z-index: 1;
+}
+
+.diagram[data-pressed="true"] .part {
+  transform: translateY(0);
+}
+
+.diagram[data-pressed="true"] [data-part="spring"] {
+  transform: translateY(0) scaleY(0.55);
+}
+
+.diagram[data-pressed="true"] [data-part="contact"] {
+  opacity: 1;
+}

@@ -1,0 +1,307 @@
+.materials {
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  scroll-margin-top: var(--header-height);
+}
+
+.intro,
+.chassis,
+.surfaces,
+.finish,
+.construction {
+  position: relative;
+  z-index: 1;
+  padding-inline: clamp(1.15rem, 4vw, 4rem);
+}
+
+.intro {
+  padding-top: clamp(4rem, 8vw, 6.5rem);
+  max-width: 46rem;
+}
+
+.title {
+  font-size: clamp(2.3rem, 5.4vw, 4.2rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 0.96;
+  text-transform: none;
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 36rem;
+  margin-top: var(--space-4);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.55;
+  text-wrap: pretty;
+  color: var(--color-gray);
+}
+
+.copy {
+  max-width: 22rem;
+}
+
+.code {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+}
+
+.name {
+  margin-top: 0.45rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.body {
+  margin-top: 0.45rem;
+  font-size: var(--text-small);
+  line-height: 1.5;
+  color: var(--color-gray);
+  text-wrap: pretty;
+}
+
+.photo,
+.diagramFrame {
+  position: relative;
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-cyan);
+  border-radius: var(--radius-max);
+  box-shadow:
+    0 0 10px rgb(36 216 240 / 0.28),
+    0 0 22px rgb(36 216 240 / 0.14);
+  --sheen-x: 42%;
+  --sheen-y: 32%;
+}
+
+.photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    28rem circle at var(--sheen-x) var(--sheen-y),
+    rgb(237 243 245 / 0.16),
+    transparent 58%
+  );
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity var(--duration-base) var(--ease-machine);
+}
+
+@media (pointer: fine) and (hover: hover) {
+  .materials:hover .photo::after {
+    opacity: 0.4;
+  }
+
+  .photo:hover::after {
+    opacity: 1;
+  }
+}
+
+.frameCode {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.9rem;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+}
+
+.chassis {
+  display: grid;
+  grid-template-columns: minmax(14rem, 22rem) minmax(0, 1fr);
+  gap: clamp(0.85rem, 1.6vw, 1.35rem);
+  align-items: center;
+  padding-top: var(--space-12);
+}
+
+.chassis .copy {
+  justify-self: end;
+}
+
+.chassisImage,
+.keycapsImage,
+.finishImage,
+.knobImage,
+.plateImage,
+.foamImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.chassisImage {
+  max-height: min(68vh, 640px);
+  object-fit: cover;
+  object-position: 8% 82%;
+}
+
+.surfaces {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.75fr);
+  gap: clamp(1.5rem, 4vw, 3.25rem);
+  align-items: start;
+  padding-top: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.keycapsImage {
+  max-height: min(52vh, 500px);
+  object-fit: cover;
+  object-position: center 55%;
+}
+
+.surfacesSide {
+  display: grid;
+  gap: var(--space-6);
+  align-content: start;
+}
+
+.knobPhoto {
+  justify-self: start;
+  max-width: 23rem;
+}
+
+.knobImage {
+  max-width: 23rem;
+}
+
+.finish {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(14rem, 0.6fr);
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+  align-items: end;
+  padding-top: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.finishImage {
+  max-height: min(42vh, 360px);
+  object-fit: cover;
+  object-position: center 58%;
+}
+
+.construction .photo {
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.plateImage,
+.foamImage {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(42vh, 360px);
+}
+
+.construction {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  margin-top: clamp(3.5rem, 7vw, 5.5rem);
+  padding-top: var(--space-8);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.detail {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 959px) {
+  .chassis,
+  .surfaces,
+  .finish,
+  .construction {
+    grid-template-columns: 1fr;
+  }
+
+  .chassis,
+  .surfaces,
+  .finish,
+  .surfacesSide,
+  .detail {
+    gap: var(--space-4);
+  }
+
+  .chassis,
+  .surfaces,
+  .finish {
+    padding-top: var(--space-8);
+  }
+
+  .chassis {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .chassis .photo {
+    order: -1;
+  }
+
+  .copy,
+  .chassis .copy {
+    max-width: none;
+    justify-self: stretch;
+  }
+
+  .construction .photo,
+  .knobPhoto {
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .chassisImage,
+  .keycapsImage,
+  .finishImage,
+  .knobImage,
+  .plateImage,
+  .foamImage {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    max-height: none;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .title {
+    font-size: clamp(2.1rem, 9vw, 3.2rem);
+  }
+
+  .construction {
+    margin-top: 0;
+    padding-top: var(--space-8);
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 640px) {
+  .intro {
+    padding-top: clamp(3.5rem, 14vw, 5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo::after {
+    content: none;
+  }
+}

@@ -1,0 +1,35 @@
+html {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.font-display,
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 0.92;
+}
+
+.font-mono,
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--color-gray);
+}
