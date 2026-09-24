@@ -111,7 +111,7 @@ export function SwitchSystem() {
       .to(
         spring ?? [],
         {
-          y: () => (spring ? restOffset(spring) : 0),
+          y: () => (spring ? restOffset(spring) : "0px"),
           scaleY: 1,
           duration: 0.26,
           ease: "power2.out",
