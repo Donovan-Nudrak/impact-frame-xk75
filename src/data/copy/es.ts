@@ -257,7 +257,13 @@ export const es: AppCopy = {
       "Producto conceptual. Esta página es una demostración frontend y no ofrece ventas, pagos ni reservas reales.",
     year: "2026",
     rights: "Todos los derechos reservados.",
-    author: "Donovan NUDRAK",
+    author: "Donovan",
+    linksLabel: "Perfiles",
+    links: {
+      linkedin: "LinkedIn",
+      github: "GitHub",
+      portfolio: "Portafolio",
+    },
   },
   legal: {
     notice:

@@ -120,6 +120,12 @@ export type AppCopy = {
     year: string;
     rights: string;
     author: string;
+    linksLabel: string;
+    links: {
+      linkedin: string;
+      github: string;
+      portfolio: string;
+    };
   };
   legal: {
     notice: string;

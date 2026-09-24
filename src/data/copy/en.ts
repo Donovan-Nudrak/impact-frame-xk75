@@ -255,7 +255,13 @@ export const en: AppCopy = {
       "Conceptual product. This page is a frontend demonstration and does not offer sales, payments or real reservations.",
     year: "2026",
     rights: "All rights reserved.",
-    author: "Donovan NUDRAK",
+    author: "Donovan",
+    linksLabel: "Profiles",
+    links: {
+      linkedin: "LinkedIn",
+      github: "GitHub",
+      portfolio: "Portfolio",
+    },
   },
   legal: {
     notice:

@@ -99,3 +99,24 @@
   color: var(--color-white);
 }
 
+.profiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  margin-top: var(--space-4);
+}
+
+.profile {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+  transition: color var(--duration-fast) var(--ease-machine);
+}
+
+.profile:hover,
+.profile:focus-visible {
+  color: var(--color-cyan);
+}
+

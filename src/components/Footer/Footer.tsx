@@ -2,6 +2,15 @@ import { pageNavItems } from "../../data/navigation";
 import { useLocale } from "../../hooks/useLocale";
 import styles from "./Footer.module.css";
 
+const profileLinks = [
+  {
+    key: "linkedin",
+    href: "https://www.linkedin.com/in/donovan-a-83b7ba3a2",
+  },
+  { key: "github", href: "https://github.com/Donovan-Nudrak" },
+  { key: "portfolio", href: "https://nudrak.dev" },
+] as const;
+
 export function Footer() {
   const { copy } = useLocale();
 
@@ -33,6 +42,19 @@ export function Footer() {
           <span>{copy.footer.rights}</span>
           <span>{copy.footer.author}</span>
         </p>
+        <nav className={styles.profiles} aria-label={copy.footer.linksLabel}>
+          {profileLinks.map((item) => (
+            <a
+              key={item.key}
+              className={styles.profile}
+              href={item.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {copy.footer.links[item.key]}
+            </a>
+          ))}
+        </nav>
       </div>
     </footer>
   );
