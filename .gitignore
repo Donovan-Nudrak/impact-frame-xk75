@@ -41,3 +41,6 @@ Desktop.ini
 
 # TypeScript
 *.tsbuildinfo
+
+# Development notes
+docs/
